@@ -51,4 +51,41 @@ public class leetCode_08 {
         }
         return (int) (sign * num);
     }
+
+    //recursive approach:
+    public static int solve(String s, int i, long ans, int sign) {
+        if (i >= s.length() || !Character.isDigit(s.charAt(i))) {
+            return (int) (sign * ans);
+        }
+
+        int digit = s.charAt(i) - '0';
+        if (ans > (Integer.MAX_VALUE - digit) / 10) {
+            return (sign == 1) ? Integer.MAX_VALUE : Integer.MIN_VALUE;
+        }
+
+        ans  = ans*10 + digit;
+
+        return solve(s, i + 1, ans, sign);
+    }
+
+    public int myAtoiRecursive(String s) {
+        int i = 0;
+        while (i < s.length() && s.charAt(i) == ' ') {
+            i++;
+        }
+
+        if (i == s.length())
+            return 0;
+
+        int sign = 1;
+
+        if (i < s.length() && s.charAt(i) == '-') {
+            sign = -1;
+            i++;
+        } else if (i < s.length() && s.charAt(i) == '+') {
+            i++;
+        }
+
+        return solve(s, i, 0, sign);
+    }
 }
