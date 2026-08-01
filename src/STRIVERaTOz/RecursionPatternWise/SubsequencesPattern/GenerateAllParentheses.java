@@ -40,4 +40,36 @@ public class GenerateAllParentheses {
         generate(n, new StringBuilder(), ans);
         return ans;
     }
+
+    //optimal approach:
+    public static void generate2(int n, StringBuilder sb, List<String> ans, int open, int close) {
+        if (sb.length() == 2 * n) {
+            ans.add(sb.toString());
+            return;
+        }
+
+        if (open < n) {
+            sb.append('(');
+            generate2(n, sb, ans, open + 1, close);
+            sb.deleteCharAt(sb.length() - 1);
+        }
+
+        if (close < open) {
+            sb.append(')');
+            generate2(n, sb, ans, open, close + 1);
+            sb.deleteCharAt(sb.length() - 1);
+        }
+    }
+
+    public static List<String> solve2(int n) {
+        List<String> ans = new ArrayList<>();
+        int open = 0;
+        int close = 0;
+        generate2(n, new StringBuilder(), ans, open, close);
+        return ans;
+    }
+
+    public static void main(String[] args) {
+        System.out.println(solve(3));
+    }
 }
