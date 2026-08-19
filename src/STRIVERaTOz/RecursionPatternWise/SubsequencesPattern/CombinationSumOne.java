@@ -13,8 +13,6 @@ import java.util.Set;
 //It is guaranteed that the number of unique combinations that sum up to target is less than 150 combinations for the given input.
 public class CombinationSumOne {
 
-    static Set<List<Integer>> set = new HashSet<>();
-
     public static void getAllCombination(int[] arr, int index, int target, List<List<Integer>> ans, List<Integer> combination) {
 
         if (index == arr.length || target < 0) {
@@ -22,16 +20,12 @@ public class CombinationSumOne {
         }
 
         if (target == 0) {
-            if (!set.contains(combination)) {
-                ans.add(new ArrayList<>(combination));
-                set.add(new ArrayList<>(combination));
-            }
+            ans.add(new ArrayList<>(combination));
             return;
         }
 
         combination.add(arr[index]);
-        //single choice
-        getAllCombination(arr, index + 1, target - arr[index], ans, combination);
+
         //multiple choice
         getAllCombination(arr, index, target - arr[index], ans, combination);
 
