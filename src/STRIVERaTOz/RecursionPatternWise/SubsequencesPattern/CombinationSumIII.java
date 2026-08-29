@@ -33,7 +33,7 @@ public class CombinationSumIII {
                 // Recursive call with updated sum and next number
                 func(sum - i, i + 1, nums, k, ans);
                 // Remove the last number to backtrack
-                nums.remove(nums.size() - 1);
+                nums.removeLast();
             } else {
                 // If the number is greater than the sum, break the loop
                 break;
