@@ -10,7 +10,7 @@ import java.util.List;
 public class GenerateAllBinaryStrings {
     public static void generate(int n, StringBuilder sb, List<String> ans) {
 
-        if (sb.length() == n) {
+        if (sb.length() == n) { 
             ans.add(sb.toString());
             return;
         }
